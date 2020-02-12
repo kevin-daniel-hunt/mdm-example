@@ -1,4 +1,4 @@
-# A MDM example react App
+# An MDM example React app
 
 To run type: `npm start`
 
