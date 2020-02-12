@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 function LoadPrompt(props) {
   return (
-    <div className="load-prompt-container">
+    <div className="load-prompt-container mt-5 text-center">
       <h4>
-        Welcome to the <code>DASHBOARD</code>.<br/>
+        Welcome to the <code className="ml-1">MDMmmm DASHBOARD</code>.<br/>
         Please load your devices...
       </h4>
       <Button

@@ -1,17 +1,22 @@
 
 import React, { useState, useEffect } from 'react';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as API from '../api';
 import LoadPrompt from './LoadPrompt';
 import Devices from './Devices';
 import DeviceView from './DeviceView';
-import './App.css';
+import './App.scss';
 
 function App() {
 
   const [devices, setDevices] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
 
+  const dispatch = useDispatch();
   const selectedDevice = useSelector(state => state);
   // yes I am using both a rudimentary redux store AND root level state.  
   // this is only for example purposes, this approach is a bit ugly obviously
@@ -19,6 +24,8 @@ function App() {
   const fetchData = async () => {
     let response;
     setIsFetching(true);
+    dispatch({ type: 'RETURN' });
+    setDevices([]);
     try {
       response = await API.fetchMachines();
       setDevices(response);
@@ -48,13 +55,20 @@ function App() {
 
   return (
     <div className="App">
-        {mainScreen}
-        <p>
-          is Fetching: {isFetching ? 'true' : 'False'}
-          {JSON.stringify(devices)}
-          STATE:
-          {JSON.stringify(selectedDevice)}
-        </p>
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>MDMmmm</Navbar.Brand>
+        <Nav className="ml-auto mr-4">
+          <NavDropdown title="FancyUsername">
+            <NavDropdown.Item>
+              TODO: Add auth?
+            </NavDropdown.Item>
+            <NavDropdown.Item onClick={fetchData}>
+              Reload Devices
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+      </Navbar>
+      {mainScreen}
     </div>
   );
 }
