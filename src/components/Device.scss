@@ -1,0 +1,13 @@
+.device-card {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 30px;
+  width: 300px;
+  .device-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
